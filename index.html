@@ -4,153 +4,134 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Flux.LT — FiveM Roleplay</title>
-  <meta name="description" content="Flux.LT — modernus Lietuvos FiveM Roleplay serveris. Prisijunk: connect cfx.re/join/jyaqaa" />
+  <meta name="description" content="Flux.LT — Lietuvos FiveM Roleplay. Prisijunk: connect cfx.re/join/jyaqaa" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0b0b0f" />
 </head>
 <body>
-  <div class="bg">
-    <div class="glow g1"></div>
-    <div class="glow g2"></div>
-    <div class="noise"></div>
+
+  <div class="announce">
+    <div class="container">
+      Šiuo metu vyksta administracijos atranka! <a href="./rules.html">Skaityti taisykles →</a>
+    </div>
   </div>
 
-  <header class="topbar">
-    <a class="brand" href="./">
-      <span class="brandMark"></span>
-      <span class="brandText">FLUX<span class="dot">.LT</span></span>
-    </a>
+  <header class="navWrap">
+    <div class="container navBar">
+      <a class="brand" href="./">
+        <span class="logo"></span>
+        <span>Flux<span class="dot">.LT</span></span>
+      </a>
 
-    <nav class="nav">
-      <a href="#apie">Apie</a>
-      <a href="#privalumai">Privalumai</a>
-      <a href="./rules.html">Taisyklės</a>
-      <a class="pill" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-    </nav>
-
-    <button class="burger" aria-label="Meniu" aria-expanded="false" id="burger">
-      <span></span><span></span><span></span>
-    </button>
+      <nav class="nav">
+        <a href="#apie">Apie mus</a>
+        <a href="#privalumai">Privalumai</a>
+        <a href="./rules.html">Taisyklės</a>
+        <a class="navBtn" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
+      </nav>
+    </div>
   </header>
-
-  <div class="mobileMenu" id="mobileMenu">
-    <a href="#apie">Apie</a>
-    <a href="#privalumai">Privalumai</a>
-    <a href="./rules.html">Taisyklės</a>
-    <a href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-  </div>
 
   <main>
     <section class="hero">
-      <div class="heroInner">
-        <div class="badge reveal">
-          <span class="statusDot" id="statusDot"></span>
-          <span id="statusText">Tikrinam serverį…</span>
+      <div class="heroBg"></div>
+      <div class="heroOverlay"></div>
+
+      <div class="container heroInner">
+        <div class="heroTop">
+          <div class="pill">
+            <span class="dotLive" id="dotLive"></span>
+            <span id="statusText">Tikrinam serverį…</span>
+          </div>
         </div>
 
-        <h1 class="reveal">
-          Lietuvos FiveM RP —
-          <span class="accent">Flux.LT</span>
+        <h1 class="heroTitle">
+          Flux.LT — rimtas FiveM RP Lietuvoje
         </h1>
 
-        <p class="sub reveal">
-          Tamsus, rimtas RP, stabilus serveris, aktyvi bendruomenė.
-          Prisijunk per FiveM ir pradėk savo istoriją.
+        <p class="heroSub">
+          Stabilus serveris, aktyvus staff, tvarkinga ekonomika ir aiškios taisyklės. Prisijunk ir kurk savo istoriją.
         </p>
 
-        <div class="ctaRow reveal">
-          <a class="btn primary" href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti</a>
+        <div class="heroActions">
+          <a class="btn primary" href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti prie serverio →</a>
           <a class="btn ghost" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Prisijungti į Discord</a>
-          <a class="btn subtle" href="./rules.html">Skaityti taisykles</a>
         </div>
 
-        <div class="statsGrid">
-          <div class="card reveal">
-            <div class="cardTop">
-              <span class="label">Online</span>
-              <span class="kpi" id="players">—</span>
-            </div>
-            <div class="muted">Žaidėjai serveryje dabar</div>
+        <div class="statsRow">
+          <div class="stat">
+            <div class="statNum" id="players">—</div>
+            <div class="statLabel">Prisijungusių žaidėjų</div>
           </div>
-
-          <div class="card reveal">
-            <div class="cardTop">
-              <span class="label">Prisijungimas</span>
-              <span class="kpi mono">cfx.re/join/jyaqaa</span>
-            </div>
-            <div class="muted">F8 console: <span class="mono">connect cfx.re/join/jyaqaa</span></div>
+          <div class="stat">
+            <div class="statNum mono">jyaqaa</div>
+            <div class="statLabel">CFX kodas</div>
           </div>
-
-          <div class="card reveal">
-            <div class="cardTop">
-              <span class="label">Bendruomenė</span>
-              <span class="kpi" id="discordHint">Discord</span>
-            </div>
-            <div class="muted">Naujienos, pagalba, frakcijos</div>
+          <div class="stat">
+            <div class="statNum mono">connect cfx.re/join/jyaqaa</div>
+            <div class="statLabel">F8 komanda</div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="apie" class="section">
-      <div class="wrap">
-        <h2 class="reveal">Apie Flux.LT</h2>
-        <p class="lead reveal">
-          Mūsų tikslas — kokybiškas RP be chaoso: aiškios taisyklės, aktyvūs staff, ir normalus progresas.
+      <div class="container">
+        <h2>Apie mus</h2>
+        <p class="lead">
+          Flux.LT orientuotas į tvarkingą RP: mažiau chaoso, daugiau istorijų, aktyvus moderavimas ir progresas be pay-to-win.
         </p>
 
-        <div class="twoCol">
-          <div class="glass reveal">
+        <div class="grid2">
+          <div class="card">
             <h3>Greita pradžia</h3>
-            <ol class="steps">
+            <ol>
               <li>Atsisiųsk FiveM</li>
-              <li>Atidaryk F8 console</li>
-              <li>Įrašyk: <span class="mono">connect cfx.re/join/jyaqaa</span></li>
-              <li>Prisijunk į Discord dėl naujokų info</li>
+              <li>Atidaryk F8</li>
+              <li>Įrašyk <span class="mono">connect cfx.re/join/jyaqaa</span></li>
+              <li>Užeik į Discord (pagalba + ticket)</li>
             </ol>
           </div>
 
-          <div class="glass reveal">
+          <div class="card">
             <h3>Kas pas mus rimta</h3>
-            <ul class="bullets">
-              <li>Stabilus serveris, tvarkinga ekonomika</li>
-              <li>RP orientuotos sistemos ir frakcijos</li>
+            <ul>
               <li>Aiškios baudos už RDM/VDM</li>
-              <li>Pagalba per Discord ticketus</li>
+              <li>Tvarkinga ekonomika</li>
+              <li>Frakcijos ir renginiai</li>
+              <li>Aktyvi administracija</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="privalumai" class="section alt">
-      <div class="wrap">
-        <h2 class="reveal">Privalumai</h2>
+    <section id="privalumai" class="section sectionAlt">
+      <div class="container">
+        <h2>Privalumai</h2>
 
         <div class="grid3">
-          <div class="feature reveal">
-            <div class="icon">◆</div>
+          <div class="feature">
+            <div class="featureIcon">◆</div>
             <h3>Rimtas RP</h3>
-            <p>Mažiau nesąmonių — daugiau istorijų ir įdomių situacijų.</p>
+            <p>Situacijos su logika ir eskalacija, ne “DM fiesta”.</p>
           </div>
-
-          <div class="feature reveal">
-            <div class="icon">◈</div>
-            <h3>Ekonomika</h3>
-            <p>Subalansuotas uždarbis, normalus progresas, be pay-to-win.</p>
+          <div class="feature">
+            <div class="featureIcon">◈</div>
+            <h3>Stabilumas</h3>
+            <p>Mažiau lag, daugiau žaidimo. Reguliarūs update’ai.</p>
           </div>
-
-          <div class="feature reveal">
-            <div class="icon">⬣</div>
-            <h3>Community</h3>
-            <p>Discord’e — pagalba, naujienos, renginiai, frakcijų atrankos.</p>
+          <div class="feature">
+            <div class="featureIcon">⬣</div>
+            <h3>Bendruomenė</h3>
+            <p>Discord’e: naujienos, atrankos, pagalba, ticketai.</p>
           </div>
         </div>
 
-        <div class="ctaPanel reveal">
+        <div class="ctaBox">
           <div>
-            <h3>Skaitai taisykles ir varai žaist?</h3>
-            <p class="muted">Taisyklės atskirame puslapyje — tvarkingai, lengva rasti.</p>
+            <h3>Prieš prisijungiant – perskaityk taisykles</h3>
+            <p class="muted">Taisyklės atskirame puslapyje, tvarkingai suskirstytos.</p>
           </div>
           <a class="btn primary" href="./rules.html">Atidaryti taisykles</a>
         </div>
@@ -158,12 +139,8 @@
     </section>
 
     <footer class="footer">
-      <div class="wrap footerInner">
-        <div>
-          <div class="brandSmall">FLUX<span class="dot">.LT</span></div>
-          <div class="muted">© <span id="year"></span> Flux.LT. All rights reserved.</div>
-        </div>
-
+      <div class="container footerInner">
+        <div class="muted">© <span id="year"></span> Flux.LT</div>
         <div class="footerLinks">
           <a href="./rules.html">Taisyklės</a>
           <a href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
