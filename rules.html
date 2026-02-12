@@ -4,158 +4,116 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Flux.LT — Taisyklės</title>
-  <meta name="description" content="Flux.LT serverio taisyklės." />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0b0b0f" />
 </head>
 <body>
-  <div class="bg">
-    <div class="glow g1"></div>
-    <div class="glow g2"></div>
-    <div class="noise"></div>
+
+  <div class="announce">
+    <div class="container">
+      Flux.LT taisyklės • <a href="./">Grįžti į pagrindinį →</a>
+    </div>
   </div>
 
-  <header class="topbar">
-    <a class="brand" href="./">
-      <span class="brandMark"></span>
-      <span class="brandText">FLUX<span class="dot">.LT</span></span>
-    </a>
+  <header class="navWrap">
+    <div class="container navBar">
+      <a class="brand" href="./">
+        <span class="logo"></span>
+        <span>Flux<span class="dot">.LT</span></span>
+      </a>
 
-    <nav class="nav">
-      <a href="./#apie">Apie</a>
-      <a href="./#privalumai">Privalumai</a>
-      <a class="active" href="./rules.html">Taisyklės</a>
-      <a class="pill" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-    </nav>
-
-    <button class="burger" aria-label="Meniu" aria-expanded="false" id="burger">
-      <span></span><span></span><span></span>
-    </button>
+      <nav class="nav">
+        <a href="./#apie">Apie mus</a>
+        <a href="./#privalumai">Privalumai</a>
+        <a class="active" href="./rules.html">Taisyklės</a>
+        <a class="navBtn" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
+      </nav>
+    </div>
   </header>
 
-  <div class="mobileMenu" id="mobileMenu">
-    <a href="./#apie">Apie</a>
-    <a href="./#privalumai">Privalumai</a>
-    <a href="./rules.html">Taisyklės</a>
-    <a href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-  </div>
-
-  <main class="rules">
+  <main class="rulesPage">
     <section class="section">
-      <div class="wrap">
-        <div class="rulesHead reveal">
-          <h1>Taisyklės</h1>
-          <p class="lead">
-            Prisijungdamas į Flux.LT tu patvirtini, kad susipažinai su taisyklėmis ir jų laikysies.
-          </p>
+      <div class="container">
+        <h1 class="rulesTitle">Taisyklės</h1>
+        <p class="lead">Prisijungdamas į Flux.LT patvirtini, kad susipažinai su taisyklėmis ir jų laikysies.</p>
 
-          <div class="miniActions">
-            <a class="btn primary" href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti</a>
-            <a class="btn ghost" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Pagalba Discord</a>
-          </div>
-        </div>
-
-        <div class="rulesGrid">
-          <aside class="toc glass reveal" id="toc">
-            <div class="tocTitle">Turinys</div>
+        <div class="rulesLayout">
+          <aside class="rulesNav">
+            <div class="rulesNavTitle">Turinys</div>
             <a href="#bendros">1. Bendros</a>
             <a href="#elgesys">2. Elgesys</a>
             <a href="#rdmvdm">3. RDM / VDM</a>
-            <a href="#pg">4. Powergaming / Metagaming</a>
-            <a href="#combat">5. Combat / Logging</a>
-            <a href="#police">6. Frakcijos</a>
-            <a href="#baudos">7. Baudos</a>
+            <a href="#pgmg">4. PG / MG</a>
+            <a href="#combat">5. Combat logging</a>
+            <a href="#baudos">6. Baudos</a>
           </aside>
 
-          <article class="content glass reveal">
+          <article class="rulesContent">
             <section id="bendros">
               <h2>1. Bendros taisyklės</h2>
-              <ul class="bullets">
-                <li>RP = vaidmuo. Žaidžiame realistiškai ir logiškai.</li>
-                <li>Cheat’ai, exploit’ai, bug abuse — griežtai draudžiama.</li>
-                <li>Administracijos sprendimai galutiniai (skundai — per Discord ticket).</li>
+              <ul>
+                <li>RP = realistiški veiksmai ir logika.</li>
+                <li>Cheat / exploit / bug abuse — ban.</li>
+                <li>Skundai ir klausimai — per Discord ticketus.</li>
               </ul>
             </section>
 
             <section id="elgesys">
               <h2>2. Elgesys</h2>
-              <ul class="bullets">
-                <li>Įžeidinėjimai, rasizmas, diskriminacija — 0 tolerancijos.</li>
-                <li>Grasinimai realiam gyvenimui — ban.</li>
-                <li>Ginčai sprendžiami per staff, ne per chaosą mieste.</li>
+              <ul>
+                <li>Įžeidinėjimai, diskriminacija — netoleruojama.</li>
+                <li>Provokacijos ir toxic elgesys — baudos.</li>
               </ul>
             </section>
 
             <section id="rdmvdm">
               <h2>3. RDM / VDM</h2>
-              <ul class="bullets">
-                <li><b>RDM</b> — šaudymas be RP priežasties / be aiškios eskalacijos.</li>
-                <li><b>VDM</b> — tyčinis žmonių taranavimas/žudymas transportu.</li>
-                <li>Privaloma eskalacija ir aiški situacijos logika.</li>
+              <ul>
+                <li><b>RDM</b> — žudymas/šaudymas be RP priežasties.</li>
+                <li><b>VDM</b> — tyčinis taranavimas/žudymas transportu.</li>
+                <li>Privaloma eskalacija ir aiški priežastis.</li>
               </ul>
             </section>
 
-            <section id="pg">
+            <section id="pgmg">
               <h2>4. Powergaming / Metagaming</h2>
-              <ul class="bullets">
-                <li><b>PG</b> — nerealūs veiksmai (pvz. “superherojus”).</li>
-                <li><b>MG</b> — OOC info naudojimas IC (Discord, stream, chat).</li>
-                <li>IC info gaunama tik per RP.</li>
+              <ul>
+                <li><b>PG</b> — nerealūs veiksmai (pvz. “nemirtingas”).</li>
+                <li><b>MG</b> — OOC informacijos naudojimas IC.</li>
               </ul>
             </section>
 
             <section id="combat">
-              <h2>5. Combat / Logging</h2>
-              <ul class="bullets">
-                <li>Combat logging (išeiti per situaciją) — draudžiama.</li>
+              <h2>5. Combat logging</h2>
+              <ul>
+                <li>Išeiti per situaciją (combat log) — draudžiama.</li>
                 <li>Jei crash — pranešk Discord’e ir grįžk kuo greičiau.</li>
               </ul>
             </section>
 
-            <section id="police">
-              <h2>6. Frakcijos</h2>
-              <ul class="bullets">
-                <li>Frakcijų taisyklės gali turėti papildomus punktus (Discord’e).</li>
-                <li>Piktnaudžiavimas uniforma / ginklais — baudos iki kick/ban.</li>
-              </ul>
-            </section>
-
             <section id="baudos">
-              <h2>7. Baudos</h2>
+              <h2>6. Baudos</h2>
               <div class="note">
-                Baudos priklauso nuo situacijos, įrodymų ir istorijos. Pasikartojimai = griežčiau.
+                Baudos priklauso nuo įrodymų ir pasikartojimų. Sunkūs pažeidimai = ban.
               </div>
-              <ul class="bullets">
+              <ul>
                 <li>Įspėjimas / kick</li>
                 <li>Laikinas ban</li>
-                <li>Nuolatinis ban (už cheat, grasinimus, sunkius pažeidimus)</li>
+                <li>Nuolatinis ban</li>
               </ul>
             </section>
 
-            <div class="ruleFooter">
-              <a class="btn subtle" href="./">← Grįžti į pagrindinį</a>
+            <div class="rulesActions">
+              <a class="btn ghost" href="./">← Pagrindinis</a>
               <a class="btn primary" href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti</a>
             </div>
           </article>
         </div>
       </div>
     </section>
-
-    <footer class="footer">
-      <div class="wrap footerInner">
-        <div>
-          <div class="brandSmall">FLUX<span class="dot">.LT</span></div>
-          <div class="muted">© <span id="year"></span> Flux.LT. All rights reserved.</div>
-        </div>
-        <div class="footerLinks">
-          <a href="./">Pagrindinis</a>
-          <a href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-          <a href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti</a>
-        </div>
-      </div>
-    </footer>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
