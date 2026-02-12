@@ -1,155 +1,225 @@
-<!doctype html>
-<html lang="lt">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Flux.LT — FiveM Roleplay</title>
-  <meta name="description" content="Flux.LT — Lietuvos FiveM Roleplay. Prisijunk: connect cfx.re/join/jyaqaa" />
-  <link rel="stylesheet" href="style.css" />
-  <meta name="theme-color" content="#0b0b0f" />
-</head>
-<body>
+:root{
+  --bg:#0b0b0f;
+  --panel: rgba(255,255,255,.06);
+  --panel2: rgba(255,255,255,.04);
+  --stroke: rgba(255,255,255,.10);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --accent:#b60f1c;        /* Flux red */
+  --accent2:#ff2a3a;
+  --shadow: 0 20px 60px rgba(0,0,0,.55);
+  --radius: 18px;
+  --sidebarW: 320px;
+}
 
-  <div class="announce">
-    <div class="container">
-      Šiuo metu vyksta administracijos atranka! <a href="./rules.html">Skaityti taisykles →</a>
-    </div>
-  </div>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+a{color:inherit; text-decoration:none}
+code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+.container{width:min(1180px, calc(100% - 32px)); margin:0 auto}
+.muted{color:var(--muted)}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
 
-  <header class="navWrap">
-    <div class="container navBar">
-      <a class="brand" href="./">
-        <span class="logo"></span>
-        <span>Flux<span class="dot">.LT</span></span>
-      </a>
+/* Background */
+.bg{
+  position:fixed; inset:0; z-index:-2;
+  background:
+    radial-gradient(900px 600px at 20% 10%, rgba(255,42,58,.16), transparent 55%),
+    radial-gradient(900px 600px at 80% 20%, rgba(182,15,28,.18), transparent 55%),
+    radial-gradient(1200px 800px at 50% 90%, rgba(255,255,255,.05), transparent 60%),
+    #0b0b0f;
+}
+.noise{
+  position:fixed; inset:0; z-index:-1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity:.14;
+}
 
-      <nav class="nav">
-        <a href="#apie">Apie mus</a>
-        <a href="#privalumai">Privalumai</a>
-        <a href="./rules.html">Taisyklės</a>
-        <a class="navBtn" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-      </nav>
-    </div>
-  </header>
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background: rgba(10,10,14,.62);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.topbar .container{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 0;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-weight: 900; letter-spacing:.6px;
+}
+.brandMark{
+  width:36px; height:36px; border-radius:12px;
+  background: linear-gradient(135deg, rgba(182,15,28,1), rgba(255,42,58,.55));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 50px rgba(182,15,28,.16);
+}
+.brand .dot{color:var(--accent2)}
+.topLinks{display:flex; gap:10px; align-items:center}
+.pill{
+  padding:10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  font-weight: 800;
+}
+.pill:hover{background: rgba(255,255,255,.10)}
 
-  <main>
-    <section class="hero">
-      <div class="heroBg"></div>
-      <div class="heroOverlay"></div>
+/* Layout */
+.shell{
+  display:grid;
+  grid-template-columns: var(--sidebarW) 1fr;
+  gap: 14px;
+  padding: 16px 0 28px;
+}
+.panel{
+  background: var(--panel);
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
 
-      <div class="container heroInner">
-        <div class="heroTop">
-          <div class="pill">
-            <span class="dotLive" id="dotLive"></span>
-            <span id="statusText">Tikrinam serverį…</span>
-          </div>
-        </div>
+/* Sidebar */
+.sidebar{padding:14px}
+.searchWrap{
+  display:flex; gap:10px; align-items:center;
+  padding:10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+}
+.searchWrap input{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  color: var(--text);
+  font-weight:700;
+}
+.searchWrap input::placeholder{color: rgba(255,255,255,.55)}
+.groupTitle{
+  margin:14px 6px 8px;
+  font-weight: 950;
+  color: rgba(255,255,255,.86);
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.nav{
+  display:flex; flex-direction:column; gap:4px;
+}
+.nav a{
+  padding:10px 10px;
+  border-radius: 14px;
+  color: rgba(255,255,255,.76);
+  border:1px solid transparent;
+}
+.nav a:hover{background: rgba(255,255,255,.06); color: rgba(255,255,255,.92)}
+.nav a.active{
+  background: rgba(182,15,28,.14);
+  border-color: rgba(255,42,58,.22);
+  color: rgba(255,255,255,.95);
+}
 
-        <h1 class="heroTitle">
-          Flux.LT — rimtas FiveM RP Lietuvoje
-        </h1>
+/* Content */
+.content{padding:18px 18px 10px}
+.breadcrumb{
+  display:flex; gap:8px; flex-wrap:wrap;
+  font-weight: 800;
+  color: rgba(255,255,255,.72);
+  font-size: 13px;
+}
+.breadcrumb a{color: rgba(255,255,255,.86)}
+h1{
+  margin:10px 0 8px;
+  font-size: clamp(26px, 3.2vw, 40px);
+  letter-spacing: -.6px;
+}
+.lead{margin:0 0 16px; color: rgba(255,255,255,.72); max-width: 80ch; line-height:1.5}
+hr{
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.10);
+  margin: 16px 0;
+}
+h2{
+  margin: 18px 0 8px;
+  font-size: 22px;
+  letter-spacing: -.2px;
+}
+h3{
+  margin: 14px 0 6px;
+  font-size: 16px;
+  color: rgba(255,255,255,.90);
+}
+p{margin: 0 0 10px; color: rgba(255,255,255,.78); line-height:1.55}
+ul,ol{margin: 0 0 12px 18px; color: rgba(255,255,255,.78)}
+li{margin: 8px 0}
 
-        <p class="heroSub">
-          Stabilus serveris, aktyvus staff, tvarkinga ekonomika ir aiškios taisyklės. Prisijunk ir kurk savo istoriją.
-        </p>
+/* Onex-like callouts */
+.callout{
+  margin: 10px 0 14px;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+.callout .tag{
+  display:inline-flex; align-items:center; gap:8px;
+  font-weight: 950;
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,.86);
+}
+.callout.info{
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05);
+}
+.callout.warn{
+  border-color: rgba(255,42,58,.26);
+  background: rgba(182,15,28,.12);
+}
+.callout code{color: rgba(255,255,255,.92)}
 
-        <div class="heroActions">
-          <a class="btn primary" href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti prie serverio →</a>
-          <a class="btn ghost" href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Prisijungti į Discord</a>
-        </div>
+/* Footer nav */
+.pageNav{
+  display:flex; justify-content:space-between; gap:10px;
+  padding: 12px 0 6px;
+  margin-top: 10px;
+}
+.pageNav a{
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  font-weight: 900;
+  color: rgba(255,255,255,.86);
+}
+.pageNav a:hover{background: rgba(255,255,255,.09)}
 
-        <div class="statsRow">
-          <div class="stat">
-            <div class="statNum" id="players">—</div>
-            <div class="statLabel">Prisijungusių žaidėjų</div>
-          </div>
-          <div class="stat">
-            <div class="statNum mono">jyaqaa</div>
-            <div class="statLabel">CFX kodas</div>
-          </div>
-          <div class="stat">
-            <div class="statNum mono">connect cfx.re/join/jyaqaa</div>
-            <div class="statLabel">F8 komanda</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="apie" class="section">
-      <div class="container">
-        <h2>Apie mus</h2>
-        <p class="lead">
-          Flux.LT orientuotas į tvarkingą RP: mažiau chaoso, daugiau istorijų, aktyvus moderavimas ir progresas be pay-to-win.
-        </p>
-
-        <div class="grid2">
-          <div class="card">
-            <h3>Greita pradžia</h3>
-            <ol>
-              <li>Atsisiųsk FiveM</li>
-              <li>Atidaryk F8</li>
-              <li>Įrašyk <span class="mono">connect cfx.re/join/jyaqaa</span></li>
-              <li>Užeik į Discord (pagalba + ticket)</li>
-            </ol>
-          </div>
-
-          <div class="card">
-            <h3>Kas pas mus rimta</h3>
-            <ul>
-              <li>Aiškios baudos už RDM/VDM</li>
-              <li>Tvarkinga ekonomika</li>
-              <li>Frakcijos ir renginiai</li>
-              <li>Aktyvi administracija</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="privalumai" class="section sectionAlt">
-      <div class="container">
-        <h2>Privalumai</h2>
-
-        <div class="grid3">
-          <div class="feature">
-            <div class="featureIcon">◆</div>
-            <h3>Rimtas RP</h3>
-            <p>Situacijos su logika ir eskalacija, ne “DM fiesta”.</p>
-          </div>
-          <div class="feature">
-            <div class="featureIcon">◈</div>
-            <h3>Stabilumas</h3>
-            <p>Mažiau lag, daugiau žaidimo. Reguliarūs update’ai.</p>
-          </div>
-          <div class="feature">
-            <div class="featureIcon">⬣</div>
-            <h3>Bendruomenė</h3>
-            <p>Discord’e: naujienos, atrankos, pagalba, ticketai.</p>
-          </div>
-        </div>
-
-        <div class="ctaBox">
-          <div>
-            <h3>Prieš prisijungiant – perskaityk taisykles</h3>
-            <p class="muted">Taisyklės atskirame puslapyje, tvarkingai suskirstytos.</p>
-          </div>
-          <a class="btn primary" href="./rules.html">Atidaryti taisykles</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footerInner">
-        <div class="muted">© <span id="year"></span> Flux.LT</div>
-        <div class="footerLinks">
-          <a href="./rules.html">Taisyklės</a>
-          <a href="https://discord.gg/CBX73RdGQV" target="_blank" rel="noreferrer">Discord</a>
-          <a href="fivem://connect/cfx.re/join/jyaqaa">Prisijungti</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+/* Mobile */
+.mobileBtn{
+  display:none;
+  padding:10px 12px;
+  border-radius:14px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  font-weight:900;
+}
+@media (max-width: 980px){
+  .shell{grid-template-columns: 1fr}
+  .mobileBtn{display:inline-flex}
+  .sidebar{display:none}
+  .sidebar.show{display:block}
+}
