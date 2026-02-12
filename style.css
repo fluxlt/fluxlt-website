@@ -192,5 +192,90 @@ h2{margin:0 0 10px; font-size:32px; letter-spacing:-.4px}
 .featureIcon{
   width:44px; height:44px; border-radius:14px;
   display:grid; place-items:center;
-  background: rgba(
+  background: rgba(182,15,28,.20);
+  border:1px solid rgba(255,42,58,.28);
+  margin-bottom:10px;
+}
+.feature h3{margin:0 0 6px}
+.feature p{margin:0; color:rgba(255,255,255,.72)}
+
+.ctaBox{
+  margin-top: 18px;
+  background: var(--glass2);
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  backdrop-filter: blur(16px);
+}
+
+.footer{
+  padding: 26px 0;
+  background: rgba(10,10,14,.60);
+  border-top:1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(14px);
+}
+.footerInner{display:flex; align-items:center; justify-content:space-between; gap:14px}
+.footerLinks{display:flex; gap:14px; color:rgba(255,255,255,.78)}
+.footerLinks a{padding:8px 10px; border-radius:12px}
+.footerLinks a:hover{background: rgba(255,255,255,.08)}
+
+/* Rules page */
+.rulesTitle{margin:0 0 10px; font-size:44px; letter-spacing:-.6px}
+.rulesLayout{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+}
+.rulesNav{
+  position:sticky;
+  top: 92px;
+  align-self:start;
+  background: var(--glass);
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 14px;
+  backdrop-filter: blur(16px);
+}
+.rulesNavTitle{font-weight:950; margin-bottom:10px}
+.rulesNav a{
+  display:block;
+  padding:10px 10px;
+  border-radius:12px;
+  color:rgba(255,255,255,.78);
+}
+.rulesNav a:hover{background: rgba(255,255,255,.08); color:rgba(255,255,255,.95)}
+.rulesContent{
+  background: var(--glass);
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(16px);
+}
+.rulesContent h2{font-size:22px; margin: 12px 0 6px}
+.rulesContent ul{margin:0; padding-left: 18px; color:rgba(255,255,255,.78)}
+.rulesContent li{margin:10px 0}
+.note{
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(182,15,28,.14);
+  border:1px solid rgba(255,42,58,.24);
+  color: rgba(255,255,255,.80);
+}
+.rulesActions{display:flex; gap:10px; justify-content:flex-end; margin-top: 14px}
+
+@media (max-width: 980px){
+  .nav{gap:8px}
+  .statsRow{grid-template-columns: 1fr; gap:12px}
+  .grid2{grid-template-columns: 1fr}
+  .grid3{grid-template-columns: 1fr}
+  .ctaBox{flex-direction:column; align-items:flex-start}
+  .rulesLayout{grid-template-columns: 1fr}
+  .rulesNav{position:relative; top:auto}
+}
 
