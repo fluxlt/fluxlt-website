@@ -1,8 +1,8 @@
 const SERVER_CODE = "jyaqaa";
 const API_URL = `https://servers-frontend.fivem.net/api/servers/single/${SERVER_CODE}`;
 
-function setOnline(isOnline) {
-  const dot = document.getElementById("dotLive");
+function setStatus(isOnline) {
+  const dot = document.getElementById("statusDot");
   const text = document.getElementById("statusText");
   if (!dot || !text) return;
 
@@ -27,20 +27,26 @@ async function getPlayers() {
     const el = document.getElementById("players");
     if (el && Number.isFinite(players) && Number.isFinite(max)) {
       el.textContent = `${players}/${max}`;
-      setOnline(true);
+      setStatus(true);
       return;
     }
     throw new Error("Bad payload");
   } catch {
     const el = document.getElementById("players");
     if (el) el.textContent = "—";
-    setOnline(false);
+    setStatus(false);
   }
 }
+
+// reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 getPlayers();
 setInterval(getPlayers, 30000);
-
