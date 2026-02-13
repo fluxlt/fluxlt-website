@@ -1,131 +1,311 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="lt">
 <head>
-  <meta charset="UTF-8">
-  <title>Flux.LT – Parama</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flux.LT • Parama</title>
 
-  <!-- Pagrindinis tavo style -->
-  <link rel="stylesheet" href="../assets/style.css">
+  <!-- jei turi bendrą stilių iš svetainės -->
+  <link rel="stylesheet" href="../style.css" />
 
-  <!-- Store style -->
-  <link rel="stylesheet" href="./assets/store.css">
-
+  <!-- Shop stilius (įdėta čia, kad būtų 100% gražu) -->
   <style>
-    body {
-      background: radial-gradient(circle at top,#1a0000 0%,#0b0b0f 60%);
-      color:#fff;
-      font-family:sans-serif;
+    :root{
+      --bg: #070607;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(0,0,0,.35);
+      --border: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --red: #d10b15;
+      --red2:#8a050c;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+
+    body{
       margin:0;
-      padding:0;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(209,11,21,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 30%, rgba(209,11,21,.10), transparent 55%),
+        linear-gradient(180deg, #060506, #050405 60%, #040304);
+      min-height:100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    .container {
-      max-width:1200px;
-      margin:auto;
-      padding:40px 20px;
+    .wrap{ max-width:1200px; margin:0 auto; padding:28px 18px 60px; }
+
+    .top{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:14px; margin-bottom:16px;
     }
 
-    h1 {
-      font-size:40px;
-      margin-bottom:10px;
+    h1{ margin:0; font-size:46px; letter-spacing:.2px; }
+    .sub{ color:var(--muted); margin-top:6px; max-width:800px; }
+
+    .btns{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .shopBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:40px; padding:0 14px; border-radius:12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      color:var(--text); text-decoration:none;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .shopBtn:hover{ transform: translateY(-1px); border-color: rgba(209,11,21,.55); background: rgba(255,255,255,.08); }
+    .shopBtn.primary{ background: linear-gradient(180deg, var(--red), var(--red2)); border-color: rgba(209,11,21,.55); }
+
+    .bar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin:18px 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 12px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .crumb{ color:var(--muted); font-weight:600; }
+    .search{
+      display:flex; align-items:center; gap:10px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 8px 10px;
+      min-width: 280px;
+    }
+    .search input{
+      width:100%;
+      background: transparent;
+      border:0; outline:0;
+      color: var(--text);
+      font-size:14px;
     }
 
-    .lead {
-      color:rgba(255,255,255,.7);
-      margin-bottom:30px;
+    .layout{
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap: 14px;
+      align-items:start;
     }
 
-    .panel {
-      background:rgba(20,20,25,.7);
-      border:1px solid rgba(255,0,0,.2);
-      border-radius:16px;
-      padding:16px;
-      margin-bottom:20px;
-      backdrop-filter:blur(10px);
+    aside{
+      background: var(--panel);
+      border:1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+      backdrop-filter: blur(10px);
     }
 
-    input, select {
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.1);
-      padding:8px 10px;
-      border-radius:10px;
-      color:white;
+    .sideTitle{ font-weight:800; margin:4px 6px 10px; color: rgba(255,255,255,.9); }
+    .sideCat, .sideSec{
+      width:100%;
+      text-align:left;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.08);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin: 6px 0;
+      cursor:pointer;
+      transition: transform .1s ease, border-color .15s ease, background .15s ease;
+    }
+    .sideCat:hover, .sideSec:hover{ transform: translateY(-1px); border-color: rgba(209,11,21,.50); }
+    .sideCat.active{ border-color: rgba(209,11,21,.65); background: rgba(209,11,21,.08); }
+    .sideSec.active{ border-color: rgba(209,11,21,.55); background: rgba(209,11,21,.06); }
+    .chev{ float:right; opacity:.7; }
+    .sideSections{ padding-left: 10px; border-left: 1px solid rgba(255,255,255,.08); margin: 8px 0 10px 8px; }
+
+    main{
+      background: var(--panel);
+      border:1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+      backdrop-filter: blur(10px);
+      min-height: 420px;
     }
 
-    input::placeholder {
-      color:rgba(255,255,255,.5);
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      padding: 2px;
+    }
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .search{ min-width: 0; width: 100%; }
+      h1{ font-size: 36px; }
+    }
+
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      overflow:hidden;
+      background: rgba(0,0,0,.30);
+      box-shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+    .cardImg{
+      height: 170px;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .cardBody{ padding: 12px; }
+    .cardTop{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .cardTitle{ margin:0; font-size: 18px; }
+    .price{ font-weight:900; color: #fff; background: rgba(209,11,21,.18); border:1px solid rgba(209,11,21,.35); padding:6px 10px; border-radius: 999px; }
+    .cardDesc{ margin:8px 0 12px; color: var(--muted); font-size: 14px; line-height: 1.35; }
+    .cardActions{ display:flex; justify-content:flex-end; }
+    .buyBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      height: 38px; padding: 0 14px; border-radius: 12px;
+      color:#fff; text-decoration:none; font-weight: 800;
+      background: linear-gradient(180deg, var(--red), var(--red2));
+      border:1px solid rgba(209,11,21,.55);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .buyBtn:hover{ transform: translateY(-1px); filter: brightness(1.07); }
+
+    .empty{
+      color: var(--muted);
+      padding: 18px;
+      border: 1px dashed rgba(255,255,255,.14);
+      border-radius: 14px;
+      background: rgba(0,0,0,.25);
+      margin: 6px;
+    }
+
+    /* Admin */
+    .admin{
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid rgba(209,11,21,.25);
+      border-radius: 16px;
+      background: rgba(0,0,0,.35);
+    }
+    .admin h2{ margin: 0 0 10px; font-size: 18px; }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+    .row input, .row select, .row textarea{
+      flex: 1 1 180px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      color: var(--text);
+      padding: 10px 10px;
+      outline: none;
+    }
+    .row textarea{ min-height: 92px; resize: vertical; }
+    .actionBtn{
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(209,11,21,.55);
+      background: linear-gradient(180deg, var(--red), var(--red2));
+      color: #fff;
+      font-weight: 900;
+      cursor:pointer;
+      transition: transform .15s ease, filter .15s ease;
+      white-space: nowrap;
+    }
+    .actionBtn:hover{ transform: translateY(-1px); filter: brightness(1.07); }
+
+    #adminLog{
+      margin-top: 10px;
+      white-space: pre-wrap;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: 10px;
+      color: rgba(255,255,255,.85);
+      max-height: 220px;
+      overflow:auto;
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-<div class="container">
+    <div class="top">
+      <div>
+        <h1>Parama</h1>
+        <div class="sub">
+          Palaikyk <b>Flux.LT</b> serverį ir gauk išskirtines transporto priemones, namus bei paslaugas.
+        </div>
+      </div>
 
-  <h1>Parama</h1>
-  <p class="lead">Palaikyk Flux.LT serverį ir gauk išskirtines transporto priemones bei paslaugas.</p>
+      <div class="btns">
+        <a class="shopBtn primary" id="discordLoginBtn" href="#" target="_blank" rel="noreferrer">Prisijungti su Discord</a>
+        <a class="shopBtn" id="discordLogoutBtn" href="#" style="display:none">Atsijungti</a>
+      </div>
+    </div>
 
-  <!-- Login -->
-  <div class="shopActions">
-    <a class="shopBtn" id="discordLoginBtn" href="#" target="_blank">Prisijungti su Discord</a>
-    <a class="shopBtn" id="discordLogoutBtn" href="#" style="display:none;">Atsijungti</a>
+    <div class="bar">
+      <div class="crumb" id="crumb">Kraunama...</div>
+      <div class="search">
+        <span style="opacity:.75">🔎</span>
+        <input id="q" type="text" placeholder="Ieškoti (pavadinimas / aprašymas)..." />
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside id="storeLeft"></aside>
+
+      <main>
+        <div class="grid" id="storeGrid"></div>
+
+        <!-- Admin panel: mato tik OWNER -->
+        <section class="admin" id="adminPanel" style="display:none;">
+          <h2>Admin • Valdymas</h2>
+
+          <div style="opacity:.85; margin:0 0 10px;">
+            Čia gali pridėti kategorijas, subkategorijas ir prekes. Visiems kitiems šitas blokas nematomas.
+          </div>
+
+          <h3 style="margin:12px 0 8px;">+ Nauja kategorija</h3>
+          <div class="row">
+            <input id="catTitle" placeholder="Kategorijos pavadinimas (pvz. Tr. priemonės)" />
+            <input id="catId" placeholder="ID (nebūtina, pvz. transportas)" />
+            <button class="actionBtn" id="addCategoryBtn">Pridėti</button>
+          </div>
+
+          <h3 style="margin:14px 0 8px;">+ Nauja subkategorija</h3>
+          <div class="row">
+            <select id="sectionCategory"></select>
+            <input id="sectionTitle" placeholder="Subkategorijos pavadinimas" />
+            <input id="sectionId" placeholder="ID (nebūtina)" />
+            <button class="actionBtn" id="addSectionBtn">Pridėti</button>
+          </div>
+
+          <h3 style="margin:14px 0 8px;">+ Nauja prekė</h3>
+          <div class="row">
+            <select id="itemCategory"></select>
+            <select id="itemSection"></select>
+          </div>
+          <div class="row">
+            <input id="itemName" placeholder="Pavadinimas (pvz. Cadillac Escalade)" />
+            <input id="itemPrice" placeholder="Kaina € (pvz. 70)" />
+          </div>
+          <div class="row">
+            <input id="itemImage" placeholder="Nuotraukos URL (https://...jpg/png)" />
+            <input id="itemStripe" placeholder="Stripe Payment Link (https://buy.stripe.com/...)" />
+          </div>
+          <div class="row">
+            <textarea id="itemDesc" placeholder="Aprašymas (ką gauna žaidėjas, sąlygos, pastabos)"></textarea>
+            <button class="actionBtn" id="addItemBtn">Pridėti prekę</button>
+          </div>
+
+          <pre id="adminLog">Admin log...</pre>
+        </section>
+      </main>
+    </div>
+
   </div>
 
-  <!-- ADMIN PANEL -->
-  <div class="panel" id="adminPanel" style="display:none;">
-    <h3>🛠️ Admin Panel (tik savininkui)</h3>
-
-    <h4>➕ Nauja kategorija</h4>
-    <div style="display:flex;gap:10px;margin-bottom:15px;">
-      <input id="newCatTitle" placeholder="Kategorijos pavadinimas">
-      <input id="newCatId" placeholder="ID (nebūtina)">
-      <button class="shopBtn primary" id="addCatBtn">Pridėti</button>
-    </div>
-
-    <h4>➕ Nauja subkategorija</h4>
-    <div style="display:flex;gap:10px;margin-bottom:15px;">
-      <select id="secCat"></select>
-      <input id="newSecTitle" placeholder="Subkategorijos pavadinimas">
-      <input id="newSecId" placeholder="ID (nebūtina)">
-      <button class="shopBtn primary" id="addSecBtn">Pridėti</button>
-    </div>
-
-    <h4>➕ Nauja prekė</h4>
-    <div style="display:flex;gap:10px;margin-bottom:10px;">
-      <select id="a_category"></select>
-      <select id="a_section"></select>
-    </div>
-
-    <div style="display:flex;gap:10px;margin-bottom:10px;">
-      <input id="a_name" placeholder="Pavadinimas">
-      <input id="a_price" placeholder="Kaina €">
-    </div>
-
-    <div style="display:flex;gap:10px;margin-bottom:10px;">
-      <input id="a_image" placeholder="./assets/store/pav.jpg">
-      <input id="a_stripe" placeholder="Stripe Payment Link">
-    </div>
-
-    <div style="display:flex;gap:10px;margin-bottom:10px;">
-      <input id="a_desc" placeholder="Aprašymas">
-      <button class="shopBtn primary" id="addItemBtn">Pridėti prekę</button>
-    </div>
-
-    <div id="adminMsg" style="color:#ff6666;"></div>
-  </div>
-
-  <!-- STORE -->
-  <div class="storeShell">
-    <aside class="storeLeft panel" id="storeLeft"></aside>
-    <section class="storeRight">
-      <div class="grid" id="storeGrid"></div>
-    </section>
-  </div>
-
-</div>
-
-<script src="./assets/store.js"></script>
-
+  <script src="./assets/store.js"></script>
 </body>
 </html>
