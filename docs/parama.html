@@ -8,7 +8,6 @@
   <!-- jei turi bendrą stilių iš svetainės -->
   <link rel="stylesheet" href="../style.css" />
 
-  <!-- Shop stilius (įdėta čia, kad būtų 100% gražu) -->
   <style>
     :root{
       --bg: #070607;
@@ -99,6 +98,19 @@
       backdrop-filter: blur(10px);
     }
 
+    /* Sidebar buttons rows (kad admin edit/delete atrodytų normaliai) */
+    .sideRow{ display:flex; gap:8px; align-items:center; }
+    .miniBtns{ display:flex; gap:6px; }
+    .miniBtn{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff;
+      border-radius: 10px;
+      padding: 6px 8px;
+      cursor: pointer;
+    }
+    .miniBtn:hover{ background: rgba(255,255,255,.10); }
+
     .sideTitle{ font-weight:800; margin:4px 6px 10px; color: rgba(255,255,255,.9); }
     .sideCat, .sideSec{
       width:100%;
@@ -159,7 +171,10 @@
     .cardTitle{ margin:0; font-size: 18px; }
     .price{ font-weight:900; color: #fff; background: rgba(209,11,21,.18); border:1px solid rgba(209,11,21,.35); padding:6px 10px; border-radius: 999px; }
     .cardDesc{ margin:8px 0 12px; color: var(--muted); font-size: 14px; line-height: 1.35; }
-    .cardActions{ display:flex; justify-content:flex-end; }
+
+    /* svarbu: kad Pirkti + Admin mygtukai nesusigrūstų */
+    .cardActions{ display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+
     .buyBtn{
       display:inline-flex; align-items:center; justify-content:center;
       height: 38px; padding: 0 14px; border-radius: 12px;
@@ -169,6 +184,20 @@
       transition: transform .15s ease, filter .15s ease;
     }
     .buyBtn:hover{ transform: translateY(-1px); filter: brightness(1.07); }
+
+    /* Admin card buttons (Edit/Delete ant prekių) */
+    .adminBtn{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color:#fff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight:800;
+      height: 38px;
+    }
+    .adminBtn:hover{ background: rgba(255,255,255,.10); }
+    .adminBtn.danger{ border-color: rgba(209,11,21,.55); }
 
     .empty{
       color: var(--muted);
@@ -239,7 +268,8 @@
       </div>
 
       <div class="btns">
-        <a class="shopBtn primary" id="discordLoginBtn" href="#" target="_blank" rel="noreferrer">Prisijungti su Discord</a>
+        <!-- Svarbu: be target="_blank" -->
+        <a class="shopBtn primary" id="discordLoginBtn" href="#" rel="noreferrer">Prisijungti su Discord</a>
         <a class="shopBtn" id="discordLogoutBtn" href="#" style="display:none">Atsijungti</a>
       </div>
     </div>
