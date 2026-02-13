@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <title>Flux.LT – Parama</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Pagrindinis tavo style -->
+  <link rel="stylesheet" href="../assets/style.css">
+
+  <!-- Store style -->
+  <link rel="stylesheet" href="./assets/store.css">
+
+  <style>
+    body {
+      background: radial-gradient(circle at top,#1a0000 0%,#0b0b0f 60%);
+      color:#fff;
+      font-family:sans-serif;
+      margin:0;
+      padding:0;
+    }
+
+    .container {
+      max-width:1200px;
+      margin:auto;
+      padding:40px 20px;
+    }
+
+    h1 {
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .lead {
+      color:rgba(255,255,255,.7);
+      margin-bottom:30px;
+    }
+
+    .panel {
+      background:rgba(20,20,25,.7);
+      border:1px solid rgba(255,0,0,.2);
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:20px;
+      backdrop-filter:blur(10px);
+    }
+
+    input, select {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      padding:8px 10px;
+      border-radius:10px;
+      color:white;
+    }
+
+    input::placeholder {
+      color:rgba(255,255,255,.5);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Parama</h1>
+  <p class="lead">Palaikyk Flux.LT serverį ir gauk išskirtines transporto priemones bei paslaugas.</p>
+
+  <!-- Login -->
+  <div class="shopActions">
+    <a class="shopBtn" id="discordLoginBtn" href="#" target="_blank">Prisijungti su Discord</a>
+    <a class="shopBtn" id="discordLogoutBtn" href="#" style="display:none;">Atsijungti</a>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="panel" id="adminPanel" style="display:none;">
+    <h3>🛠️ Admin Panel (tik savininkui)</h3>
+
+    <h4>➕ Nauja kategorija</h4>
+    <div style="display:flex;gap:10px;margin-bottom:15px;">
+      <input id="newCatTitle" placeholder="Kategorijos pavadinimas">
+      <input id="newCatId" placeholder="ID (nebūtina)">
+      <button class="shopBtn primary" id="addCatBtn">Pridėti</button>
+    </div>
+
+    <h4>➕ Nauja subkategorija</h4>
+    <div style="display:flex;gap:10px;margin-bottom:15px;">
+      <select id="secCat"></select>
+      <input id="newSecTitle" placeholder="Subkategorijos pavadinimas">
+      <input id="newSecId" placeholder="ID (nebūtina)">
+      <button class="shopBtn primary" id="addSecBtn">Pridėti</button>
+    </div>
+
+    <h4>➕ Nauja prekė</h4>
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <select id="a_category"></select>
+      <select id="a_section"></select>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <input id="a_name" placeholder="Pavadinimas">
+      <input id="a_price" placeholder="Kaina €">
+    </div>
+
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <input id="a_image" placeholder="./assets/store/pav.jpg">
+      <input id="a_stripe" placeholder="Stripe Payment Link">
+    </div>
+
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <input id="a_desc" placeholder="Aprašymas">
+      <button class="shopBtn primary" id="addItemBtn">Pridėti prekę</button>
+    </div>
+
+    <div id="adminMsg" style="color:#ff6666;"></div>
+  </div>
+
+  <!-- STORE -->
+  <div class="storeShell">
+    <aside class="storeLeft panel" id="storeLeft"></aside>
+    <section class="storeRight">
+      <div class="grid" id="storeGrid"></div>
+    </section>
+  </div>
+
+</div>
+
+<script src="./assets/store.js"></script>
+
+</body>
+</html>
